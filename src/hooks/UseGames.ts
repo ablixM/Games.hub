@@ -44,7 +44,7 @@ const useGames = () => {
       });
 
     return () => controller.abort();
-  }, []); // Added dependency array to useEffect
+  }, []); 
 
   return { games, error, isLoadig };
 };
