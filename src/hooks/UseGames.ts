@@ -22,13 +22,17 @@ interface FetchGamesResponse {
 }
 
 const useGames = () => {
+  const [isLoadig, setIsLoadig] = useState(false);
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const controller = new AbortController();
+
   useEffect(() => {
+    const controller = new AbortController();
+    setIsLoadig(true);
     apiClient
       .get<FetchGamesResponse>("games", { signal: controller.signal })
       .then((res) => {
+        setIsLoadig(false);
         setGames(res.data.results);
       })
       .catch((err) => {
@@ -36,12 +40,13 @@ const useGames = () => {
           return;
         }
         setError(err.message);
+        setIsLoadig(false);
       });
 
     return () => controller.abort();
-  }, [controller]); // Added dependency array to useEffect
+  }, []); // Added dependency array to useEffect
 
-  return { games, error };
+  return { games, error, isLoadig };
 };
 
 export default useGames;
