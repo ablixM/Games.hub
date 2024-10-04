@@ -5,6 +5,7 @@ import SearchInput from "./SearchInput";
 
 interface Props {
   onSearch: (searchText: string) => void;
+  selectedSwitch: string;
 }
 
 const NavBar = ({ onSearch }: Props) => {
