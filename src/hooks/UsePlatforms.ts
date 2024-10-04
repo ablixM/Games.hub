@@ -1,4 +1,4 @@
-import useData from "./UseData"
+import PlatformList from "../assets/data/PlatformList"
 
 interface Platforms{
     id: number,
@@ -6,6 +6,9 @@ interface Platforms{
     slug: string
 }
 
-const usePlatforms = ()=>useData<Platforms>("/platforms/lists/parents")
+const usePlatforms = ()=>({
+    data: PlatformList.map(item => item.platform) as Platforms[], 
+    error: null
+})
 
 export default usePlatforms
