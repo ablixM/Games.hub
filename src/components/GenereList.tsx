@@ -9,7 +9,7 @@ interface Props {
 }
 
 const GenereList = ({ onSelectedGenre, selectedGenre }: Props) => {
-  const { data, isLoadig, error } = useGenres();
+  const { data, isLoading, error } = useGenres();
 
   if (error) return null;
   const skeletons = [
@@ -17,7 +17,7 @@ const GenereList = ({ onSelectedGenre, selectedGenre }: Props) => {
   ];
   return (
     <List>
-      {isLoadig &&
+      {isLoading &&
         skeletons.map((skeleton) => (
           <HStack key={skeleton}>
             <GenreListSkeleton />

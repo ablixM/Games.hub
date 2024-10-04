@@ -8,6 +8,7 @@ interface Platforms{
 
 const usePlatforms = ()=>({
     data: PlatformList.map(item => item.platform) as Platforms[], 
+    isLoading: false,
     error: null
 })
 
